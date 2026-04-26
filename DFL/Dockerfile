@@ -12,7 +12,8 @@ RUN set -eux ;\
 ### Install Basic Packages
     apk --no-cache add \
 ### SysLog-NG
-        syslog-ng ;\
+        syslog-ng \
+        syslog-ng-scl ;\
 ### make and Set APP dir
     mkdir /APP ;\
     chmod -R 777 /APP ;\    
