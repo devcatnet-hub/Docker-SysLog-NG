@@ -17,7 +17,10 @@ services:
         target: /var/log
       - type: bind
         source: ./CFG/meraki.conf
-        target: /etc/syslog-ng/conf.d/meraki.conf
+        target: /etc/syslog-ng/conf.d/meraki.conf      
+      - type: bind
+        source: ./CFG/syslog-ng.conf
+        target: /etc/syslog-ng/syslog-ng.conf
     ports:
       - target: 22
         published: 33222
