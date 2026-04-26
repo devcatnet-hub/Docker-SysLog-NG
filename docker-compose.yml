@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  syslog-ng:
+    image: deathwalker66/syslog-ng
+    container_name: DEV.SysLog-NG
+    hostname: dev-syslog-ng
+    volumes:
+      - type: bind
+        source: /mnt/Dock/Com
+        target: /COM
+      - type: bind
+        source: ./SCP
+        target: /SCP
+      - type: bind
+        source: ./LOG
+        target: /var/log
+      - type: bind
+        source: ./CFG/meraki.conf
+        target: /etc/syslog-ng/conf.d/meraki.conf
+    ports:
+      - target: 22
+        published: 33222
+        protocol: tcp
+        mode: host
+      - target: 514
+        published: 514
+        protocol: udp
+        mode: host
+      - target: 601
+        published: 601
+        protocol: tcp
+        mode: host
+      - target: 6514
+        published: 6514
+        protocol: tcp
+        mode: host
+    networks:
+      - catnet
+    env_file:
+      - .env
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  catnet:
+    name: catnet
+    external: true
