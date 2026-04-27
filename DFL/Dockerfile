@@ -13,7 +13,8 @@ RUN set -eux ;\
     apk --no-cache add \
 ### SysLog-NG
         syslog-ng \
-        syslog-ng-scl ;\
+        syslog-ng-scl \
+        syslog-ng-http ;\
 ### make and Set APP dir
     mkdir /APP ;\
     chmod -R 777 /APP ;\    
